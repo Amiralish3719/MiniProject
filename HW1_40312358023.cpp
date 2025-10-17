@@ -108,8 +108,9 @@ void displayAllRecords(student* head)
 
 int main() {
     int choice;
-
-    string inputName;
+    
+    student* Student = nullptr;
+    string inputName,securitycode;
     int inputID, inputUnits;
     float inputGPA;
 
@@ -147,27 +148,41 @@ int main() {
             cin >> inputUnits;
             cout << "Enter GPA: ";
             cin >> inputGPA;
+            cout << "Enter securitycode: ";
+            getline(cin, securitycode);
             cout << "\n-> Student data received. (Record would be added here)\n";
+            addStudent(Student,inputName,inputID,inputUnits,inputGPA,securitycode);
+
         } else if (choice == 2) {
             cout << "\n--- Delete Student ---\n";
             cout << "Enter Student ID to delete: ";
             cin >> inputID;
             cout << "\n-> Deletion request for ID " << inputID << " received. (Record would be deleted here)\n";
+            deleteStudent(Student, inputID);
+
         } else if (choice == 3) {
             cout << "\n--- Search Student ---\n";
             cout << "Enter Student ID to search: ";
             cin >> inputID;
             cout << "\n-> Searching for ID " << inputID << "... (Record would be displayed here)\n";
+            searchStudent(Student,inputID);
+
         } else if (choice == 4) {
             cout << "\n--- Update Student GPA ---\n";
             cout << "Enter Student ID to update: ";
             cin >> inputID;
+            cout << "Enter Student unit: ";
+            cin >> inputUnits;
             cout << "Enter new GPA: ";
             cin >> inputGPA;
             cout << "\n-> Update request for ID " << inputID << " received. (GPA and security codes would be updated here)\n";
+            updateStudent(Student, inputID,inputUnits,inputGPA);
+
         } else if (choice == 5) {
             cout << "\n--- Displaying All Records ---\n";
             cout << "-> (All student records would be printed here)\n";
+            displayAllRecords(Student);
+            
         } else if (choice == 0) {
             cout << "\n================================================================================\n";
             cout << "*                         Program Terminated. Goodbye!                         *\n";
