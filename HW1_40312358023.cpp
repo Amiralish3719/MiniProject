@@ -13,11 +13,89 @@ struct student
     student* next;
 };
 
-void addStudent(student*& head, const string& name, int studentID, int units, float gpa, const string& securityCode);
-bool deleteStudent(student*& head, int studentID);
-student* searchStudent(student* head, int studentID);
-bool updateStudent(student* head, int studentID, int newUnits, float newGPA);
-void displayAllRecords(student* head);
+void addStudent(student*& head, const string& name, int studentID, int units, float gpa, const string& securityCode)
+{
+    student* newstudent = new student;
+    newstudent->name = name;
+    newstudent->studentID = studentID;
+    newstudent->units = units;
+    newstudent->gpa = gpa;
+    newstudent->securitycode = securityCode;
+    newstudent->next = nullptr;
+
+    if (head == nullptr) {
+        head = newstudent;
+        return;
+    }
+
+    student* temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = newstudent;
+};
+
+
+
+bool deleteStudent(student*& head, int studentID)
+{
+        if (head == nullptr) return false;
+
+    if (head->studentID == studentID) {
+        student* temp = head;
+        head = head->next;
+        delete temp;
+        return true;
+    }
+
+    student* prev = head;
+    student* curr = head->next;
+
+    while (curr != nullptr) {
+        if (curr->studentID == studentID) {
+            prev->next = curr->next;
+            delete curr;
+            return true;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+
+    return false;
+};
+
+
+student* searchStudent(student* head, int studentID)
+{
+        student* temp = head;
+    while (temp != nullptr) {
+        if (temp->studentID == studentID)
+            return temp;
+        temp = temp->next;
+    }
+    return nullptr;
+};
+
+bool updateStudent(student* head, int studentID, int newUnits, float newGPA)
+{};
+void displayAllRecords(student* head)
+{
+        if (head == nullptr) {
+        cout << "The library is empty." << endl;
+        return;
+    }
+
+    student* temp = head;
+    while (temp != nullptr) {
+        cout << "Name: " << temp->name
+             << ", studentID: " << temp->studentID
+             << ", units: " << temp->units
+             << ", gpa: " << temp->gpa
+             << ", securitycode: " << temp->securitycode
+             << endl;
+        temp = temp->next;
+    }
+};
 
 
 int main() {
