@@ -3,21 +3,21 @@
 
 using namespace std;
 
-struct Student
+struct student
 {
     string name;
     int studentID;
     int units;
     float gpa;
     string securitycode;
-    Student* next;
+    student* next;
 };
 
 void addStudent(student*& head, const string& name, int studentID, int units, float gpa, const string& securityCode);
-bool deleteStudent(Student*& head, int studentID);
-Student* searchStudent(Student* head, int studentID);
-bool updateStudent(Student* head, int studentID, int newUnits, float newGPA);
-void displayAllRecords(Student* head);
+bool deleteStudent(student*& head, int studentID);
+student* searchStudent(student* head, int studentID);
+bool updateStudent(student* head, int studentID, int newUnits, float newGPA);
+void displayAllRecords(student* head);
 
 
 int main() {
