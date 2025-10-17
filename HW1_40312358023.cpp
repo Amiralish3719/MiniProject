@@ -77,7 +77,15 @@ student* searchStudent(student* head, int studentID)
 };
 
 bool updateStudent(student* head, int studentID, int newUnits, float newGPA)
-{};
+{
+        student* student = searchStudent(head, studentID);
+        if (student == nullptr) return false;
+
+    student->name = newUnits;
+    student->gpa = newGPA;
+    return true;
+
+};
 void displayAllRecords(student* head)
 {
         if (head == nullptr) {
